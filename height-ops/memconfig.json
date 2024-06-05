@@ -18,6 +18,6 @@
   },
   "dependencies": {
     "email": "sys-email:",
-    "height": "height-app:"
+    "height": "height:"
   }
 }

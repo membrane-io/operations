@@ -10,3 +10,6 @@
 [submodule "sms"]
 	path = sms
 	url = https://github.com/membrane-io/membrane-sms.git
+[submodule "height"]
+	path = height
+	url = https://github.com/membrane-io/membrane-driver-height.git
