@@ -1,0 +1,23 @@
+{
+  "schema": {
+    "types": [
+      {
+        "name": "Root",
+        "actions": [
+          {
+            "name": "newTask",
+            "type": "Void"
+          },
+          {
+            "name": "run",
+            "type": "Void"
+          }
+        ]
+      }
+    ]
+  },
+  "dependencies": {
+    "email": "sys-email:",
+    "height": "height-app:"
+  }
+}

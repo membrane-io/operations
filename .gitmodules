@@ -1,0 +1,12 @@
+[submodule "drawer"]
+	path = drawer
+	url = https://github.com/membrane-io/membrane-drawer.git
+[submodule "email"]
+	path = email
+	url = https://github.com/membrane-io/membrane-email.git
+[submodule "http"]
+	path = http
+	url = https://github.com/membrane-io/membrane-http.git
+[submodule "sms"]
+	path = sms
+	url = https://github.com/membrane-io/membrane-sms.git

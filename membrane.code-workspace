@@ -1,0 +1,34 @@
+{
+  "folders": [
+    {
+      "name": "height-ops",
+      "path": "height-ops"
+    },
+    {
+      "name": "drawer",
+      "path": "drawer"
+    },
+    {
+      "name": "email",
+      "path": "email"
+    },
+    {
+      "name": "http",
+      "path": "http"
+    },
+    {
+      "name": "sms",
+      "path": "sms"
+    }
+  ],
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "membrane",
+        "request": "attach",
+        "name": "Membrane Debugger"
+      }
+    ]
+  }
+}
