@@ -4,9 +4,22 @@
       {
         "name": "Root",
         "actions": [],
-        "fields": [{ "name": "status", "type": "String" }],
-        "events": [{ "name": "statusChanged", "type": "Void" }]
+        "fields": [
+          {
+            "name": "status",
+            "type": "String"
+          }
+        ],
+        "events": [
+          {
+            "name": "statusChanged",
+            "type": "Void"
+          }
+        ]
       }
     ]
+  },
+  "dependencies": {
+    "userEvents": "discord:guilds.one(id:\"902671998902206475\").channels.one(id:\"1204871436955680819\")"
   }
 }

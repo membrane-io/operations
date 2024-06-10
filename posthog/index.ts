@@ -3,18 +3,14 @@
 // `state` is an object that persists across program updates. Store data here.
 import { nodes, root, state } from "membrane";
 
-export async function endpoint(req) {
-  state.hits = (state.hits ?? 0) + 1;
-  root.statusChanged.$emit();
+export const Root: resolvers.Root = {
+  async endpoint({ body }) {
+    if (body?.startsWith("Program faulted:")) {
+      await nodes.userEvents.sendMessage({
+        content: body,
+      });
+    }
 
-  const { method, path, query, body } = req;
-  const headers = JSON.parse(req.headers);
-
-  // INSTRUCTIONS: Handle webhook here and modify response
-
-  return JSON.stringify({
-    status: 200,
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ path, method, headers, body }, null, 2),
-  });
-}
+    return JSON.stringify({ status: 200 });
+  },
+};

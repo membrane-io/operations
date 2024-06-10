@@ -1,4 +1,2601 @@
 {
-  "types": {},
-  "imports": []
+  "types": {
+    "userEvents": {
+      "gref_hash": "455c2f018cef991d14a40ce3aafe98da708fcdb9292763c13b9357d642a3c7ed",
+      "type": "discord:Channel"
+    }
+  },
+  "imports": [
+    {
+      "name": "discord",
+      "schema": {
+        "types": [
+          {
+            "name": "Root",
+            "description": "Discord Driver",
+            "actions": [
+              {
+                "name": "configure",
+                "description": "Configure the Discord Driver",
+                "type": "Void",
+                "params": [
+                  {
+                    "name": "clientId",
+                    "description": "",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "clientSecret",
+                    "description": "",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "publicKey",
+                    "description": "",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "token",
+                    "description": "",
+                    "type": "String",
+                    "optional": true
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "followUpWebhook",
+                "description": "Send Follow-Up Webhook",
+                "type": "Void",
+                "params": [
+                  {
+                    "name": "application_id",
+                    "description": "",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "token",
+                    "description": "",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "message",
+                    "description": "",
+                    "type": "Json",
+                    "optional": false
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "endpoint",
+                "description": "Invoked when an HTTP request is received for this program",
+                "type": "String",
+                "params": [
+                  {
+                    "name": "method",
+                    "description": "HTTP method",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "path",
+                    "description": "HTTP path",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "body",
+                    "description": "HTTP body, if any",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "query",
+                    "description": "HTTP query string, encoded as JSON",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "headers",
+                    "description": "HTTP headers, encoded as JSON",
+                    "type": "String",
+                    "optional": false
+                  }
+                ],
+                "hints": {
+                  "hidden": true
+                }
+              },
+              {
+                "name": "email",
+                "description": "Invoked when a new email arrives for this program",
+                "type": "String",
+                "params": [
+                  {
+                    "name": "replyTo",
+                    "description": "Reply to",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "text",
+                    "description": "Email body as text",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "from",
+                    "description": "Email sender",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "to",
+                    "description": "To",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "cc",
+                    "description": "CC",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "subject",
+                    "description": "Email subject",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "html",
+                    "description": "Email body as HTML",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "id",
+                    "description": "Email ID",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "inReplyTo",
+                    "description": "ID of email this is a reply to, if any",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "replyText",
+                    "description": "Reply text",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "attachments",
+                    "description": "An array of attachment names and download URLs",
+                    "type": "Json",
+                    "optional": true
+                  }
+                ],
+                "hints": {
+                  "hidden": true
+                }
+              }
+            ],
+            "fields": [
+              {
+                "name": "guilds",
+                "description": "Collection of Guilds",
+                "type": "GuildCollection",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "me",
+                "description": "Current User",
+                "type": "User",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "users",
+                "description": "Collection of Users",
+                "type": "UserCollection",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "parse",
+                "description": "List of Parsed Items",
+                "type": "List",
+                "ofType": {
+                  "type": "Ref",
+                  "ofType": "Guild"
+                },
+                "params": [
+                  {
+                    "name": "name",
+                    "description": "",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "value",
+                    "description": "",
+                    "type": "String",
+                    "optional": false
+                  }
+                ],
+                "hints": {
+                  "hidden": true
+                }
+              },
+              {
+                "name": "status",
+                "description": "Status of the Driver",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "tests",
+                "description": "Test Cases",
+                "type": "Tests",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "Root",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "MemberCollection",
+            "description": "",
+            "actions": [],
+            "fields": [
+              {
+                "name": "one",
+                "description": "",
+                "type": "Member",
+                "params": [
+                  {
+                    "name": "id",
+                    "description": "",
+                    "type": "String",
+                    "optional": false
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "page",
+                "description": "",
+                "type": "MemberPage",
+                "params": [
+                  {
+                    "name": "limit",
+                    "description": "",
+                    "type": "Int",
+                    "optional": true
+                  },
+                  {
+                    "name": "after",
+                    "description": "",
+                    "type": "String",
+                    "optional": true
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "MemberCollection",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "MemberPage",
+            "description": "Represents a pageable list of Discord server members.",
+            "actions": [],
+            "fields": [
+              {
+                "name": "items",
+                "description": "A list of Discord server members on the current page.",
+                "type": "List",
+                "ofType": "Member",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "next",
+                "description": "A reference to the next page of Discord server members, if available.",
+                "type": "Ref",
+                "ofType": "MemberPage",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "MemberPage",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "CommandCollection",
+            "description": "",
+            "actions": [],
+            "fields": [
+              {
+                "name": "one",
+                "description": "",
+                "type": "Command",
+                "params": [
+                  {
+                    "name": "id",
+                    "description": "",
+                    "type": "String",
+                    "optional": false
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "items",
+                "description": "",
+                "type": "List",
+                "ofType": "Command",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "CommandCollection",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "UserCollection",
+            "description": "Collection of Discord users",
+            "actions": [],
+            "fields": [
+              {
+                "name": "one",
+                "description": "Retrieve data for a single user by their Discord ID",
+                "type": "User",
+                "params": [
+                  {
+                    "name": "id",
+                    "description": "",
+                    "type": "String",
+                    "optional": false
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "UserCollection",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "GuildCollection",
+            "description": "",
+            "actions": [],
+            "fields": [
+              {
+                "name": "one",
+                "description": "",
+                "type": "Guild",
+                "params": [
+                  {
+                    "name": "id",
+                    "description": "",
+                    "type": "String",
+                    "optional": false
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "items",
+                "description": "",
+                "type": "List",
+                "ofType": "Guild",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "GuildCollection",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "Guild",
+            "description": "Type representing a Discord server, including its properties, channels, commands, and members.",
+            "actions": [
+              {
+                "name": "createCommand",
+                "description": "Action to create a new custom command for the server.",
+                "type": "Void",
+                "params": [
+                  {
+                    "name": "name",
+                    "description": "Name assigned to the new command.",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "description",
+                    "description": "Short description for the new command.",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "options",
+                    "description": "JSON-formatted options to customize the command.",
+                    "type": "Json",
+                    "optional": true
+                  },
+                  {
+                    "name": "type",
+                    "description": "Integer indicating the type of the command to be created.",
+                    "type": "Int",
+                    "optional": true
+                  }
+                ],
+                "hints": {}
+              }
+            ],
+            "fields": [
+              {
+                "name": "id",
+                "description": "Unique identifier for the Discord server.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "name",
+                "description": "Name of the Discord server.",
+                "type": "String",
+                "params": [],
+                "hints": {
+                  "primary": true
+                }
+              },
+              {
+                "name": "icon",
+                "description": "URL of the server's icon.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "owner",
+                "description": "Flag indicating if the authenticated user owns the server.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "permissions",
+                "description": "Bit set representing the server's permissions.",
+                "type": "Int",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "features",
+                "description": "List of special features enabled for the server.",
+                "type": "List",
+                "ofType": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "channels",
+                "description": "Collection of channels within the server.",
+                "type": "ChannelCollection",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "commands",
+                "description": "Collection of custom commands available in the server.",
+                "type": "CommandCollection",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "members",
+                "description": "Collection of members who are part of the server.",
+                "type": "MemberCollection",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "Guild",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "onSlashCommand",
+                "description": "Event emitted when a slash command is invoked in the server.",
+                "type": "SlashCommand",
+                "params": [],
+                "hints": {}
+              }
+            ]
+          },
+          {
+            "name": "ChannelCollection",
+            "description": "",
+            "actions": [],
+            "fields": [
+              {
+                "name": "one",
+                "description": "",
+                "type": "Channel",
+                "params": [
+                  {
+                    "name": "id",
+                    "description": "",
+                    "type": "String",
+                    "optional": false
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "items",
+                "description": "",
+                "type": "List",
+                "ofType": "Channel",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "ChannelCollection",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "MessageCollection",
+            "description": "Collection of messages available in Discord.",
+            "actions": [],
+            "fields": [
+              {
+                "name": "one",
+                "description": "Fetches a specific Discord message using its unique ID.",
+                "type": "Message",
+                "params": [
+                  {
+                    "name": "id",
+                    "description": "Identifier of the message to be retrieved from Discord.",
+                    "type": "String",
+                    "optional": false
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "items",
+                "description": "Obtains a list of Discord messages, offering several filter criteria such as message ID ranges and limits.",
+                "type": "List",
+                "ofType": "Message",
+                "params": [
+                  {
+                    "name": "limit",
+                    "description": "Limits the number of messages returned in the list. If not specified, a default limit is applied.",
+                    "type": "Int",
+                    "optional": true
+                  },
+                  {
+                    "name": "around",
+                    "description": "Centers the retrieved message list around the message with the specified ID.",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "before",
+                    "description": "Retrieves messages posted before the message with the specified ID.",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "after",
+                    "description": "Retrieves messages posted after the message with the specified ID.",
+                    "type": "String",
+                    "optional": true
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "MessageCollection",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "Channel",
+            "description": "Represents a Discord channel.",
+            "actions": [
+              {
+                "name": "sendMessage",
+                "description": "Send a message to the channel.",
+                "type": "Json",
+                "params": [
+                  {
+                    "name": "content",
+                    "description": "The content of the message to send.",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "payload_json",
+                    "description": "The payload of the message in JSON format.",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "tts",
+                    "description": "Enable TTS (Text-to-Speech) for the message.",
+                    "type": "Boolean",
+                    "optional": true
+                  },
+                  {
+                    "name": "flags",
+                    "description": "The flags to be applied to the message.",
+                    "type": "Int",
+                    "optional": true
+                  },
+                  {
+                    "name": "sticker_ids",
+                    "description": "The IDs of the stickers to be sent with the message.",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "components",
+                    "description": "The components to be included in the message.",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "embeds",
+                    "description": "The embeds to be included in the message.",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "message_reference",
+                    "description": "",
+                    "type": "Json",
+                    "optional": true
+                  },
+                  {
+                    "name": "allowed_mentions",
+                    "description": "",
+                    "type": "Json",
+                    "optional": true
+                  }
+                ],
+                "hints": {}
+              }
+            ],
+            "fields": [
+              {
+                "name": "id",
+                "description": "The unique identifier of the channel.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "last_message_id",
+                "description": "The unique identifier of the last message sent in the channel.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "rate_limit_per_user",
+                "description": "The rate limit for users in the channel.",
+                "type": "Int",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "name",
+                "description": "The name of the channel.",
+                "type": "String",
+                "params": [],
+                "hints": {
+                  "primary": true
+                }
+              },
+              {
+                "name": "type",
+                "description": "The type of the channel.",
+                "type": "Int",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "position",
+                "description": "The position of the channel.",
+                "type": "Int",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "flags",
+                "description": "The flags associated with the channel.",
+                "type": "Int",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "nsfw",
+                "description": "Indicates if the channel is NSFW (Not Safe For Work).",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "parend_id",
+                "description": "The parent channel ID, if the channel is a sub-channel.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "topic",
+                "description": "The topic of the channel.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "guild_id",
+                "description": "The unique identifier of the guild to which the channel belongs.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "permissions_overwrites",
+                "description": "The list of permission overwrites for the channel.",
+                "type": "List",
+                "ofType": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "messages",
+                "description": "A collection of messages sent in the channel.",
+                "type": "MessageCollection",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "Channel",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "Message",
+            "description": "Represents a message posted in a Discord channel.",
+            "actions": [
+              {
+                "name": "postReaction",
+                "description": "",
+                "type": "Void",
+                "params": [
+                  {
+                    "name": "emote_str",
+                    "description": "",
+                    "type": "String",
+                    "optional": false
+                  }
+                ],
+                "hints": {}
+              }
+            ],
+            "fields": [
+              {
+                "name": "id",
+                "description": "Unique identifier for the message.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "type",
+                "description": "Type of the message indicating whether it's a default message, a recipient add, etc.",
+                "type": "Int",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "content",
+                "description": "Text content of the message.",
+                "type": "String",
+                "params": [],
+                "hints": {
+                  "primary": true
+                }
+              },
+              {
+                "name": "channel_id",
+                "description": "Identifier of the channel where the message was posted.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "pinned",
+                "description": "Indicates if the message is pinned in the channel.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "mention_everyone",
+                "description": "Indicates if the message mentions everyone in the channel.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "tts",
+                "description": "Indicates if text-to-speech is enabled for the message.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "timestamp",
+                "description": "Timestamp of when the message was sent.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "edited_timestamp",
+                "description": "Timestamp of when the message was last edited.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "flags",
+                "description": "Flags associated with the message for various features and states.",
+                "type": "Int",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "author",
+                "description": "User object representing the author of the message.",
+                "type": "User",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "attachments",
+                "description": "Attachments included with the message as a JSON string.",
+                "type": "Json",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "embeds",
+                "description": "Embedded content such as images or videos included in the message as a JSON string.",
+                "type": "Json",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "mentions",
+                "description": "List of user objects representing the users mentioned in the message.",
+                "type": "List",
+                "ofType": "User",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "mention_roles",
+                "description": "Roles mentioned in the message as a JSON string of IDs.",
+                "type": "Json",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "reactions",
+                "description": "List of reactions added to the message.",
+                "type": "List",
+                "ofType": "Reaction",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "reactionsByEmote",
+                "description": "",
+                "type": "List",
+                "ofType": "User",
+                "params": [
+                  {
+                    "name": "emote_str",
+                    "description": "",
+                    "type": "String",
+                    "optional": false
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "Message",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "Member",
+            "description": "Represents the details of a Discord server member.",
+            "actions": [],
+            "fields": [
+              {
+                "name": "user",
+                "description": "Discord user information associated with the member.",
+                "type": "User",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "nick",
+                "description": "The member's chosen nickname within the Discord server.",
+                "type": "String",
+                "params": [],
+                "hints": {
+                  "primary": true
+                }
+              },
+              {
+                "name": "roles",
+                "description": "Identifiers for each role assigned to the member in the Discord server.",
+                "type": "List",
+                "ofType": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "joined_at",
+                "description": "Timestamp marking when the member first joined the Discord server.",
+                "type": "String",
+                "params": [],
+                "hints": {
+                  "primary": true
+                }
+              },
+              {
+                "name": "premium_since",
+                "description": "Timestamp indicating the start of the member's Nitro boost for the server.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "deaf",
+                "description": "States if the member is deafened by the server, preventing them from hearing others.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "mute",
+                "description": "Indicates if the member is muted by the server, preventing them from speaking.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "pending",
+                "description": "Reflects whether the member has yet to complete required Membership Screening before full participation.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "avatar",
+                "description": "Direct link to the member's custom avatar within the server, if set.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "flags",
+                "description": "Numerical value representing specific permissions or features available to the member.",
+                "type": "Int",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "Member",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "User",
+            "description": "Represents a user on the Discord platform, including their basic profile information.",
+            "actions": [],
+            "fields": [
+              {
+                "name": "id",
+                "description": "The Discord user's unique identifier.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "username",
+                "description": "The username of the Discord user, not including the discriminator part.",
+                "type": "String",
+                "params": [],
+                "hints": {
+                  "primary": true
+                }
+              },
+              {
+                "name": "display_name",
+                "description": "The custom or server-specific nickname of the Discord user.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "avatar",
+                "description": "URL linking to the Discord user's profile picture.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "avatar_decoration",
+                "description": "Additional graphical elements applied to the user's avatar on Discord.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "discriminator",
+                "description": "A unique four-digit tag associated with the user's username.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "public_flags",
+                "description": "Binary flags representing the achievements and statuses of the Discord user.",
+                "type": "Int",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "bot",
+                "description": "A boolean indicating if the user is an automated bot account.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "User",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "Reaction",
+            "description": "Represents a reaction made to a message in Discord",
+            "actions": [],
+            "fields": [
+              {
+                "name": "count",
+                "description": "The number of times the specific emoji has been used as a reaction",
+                "type": "Int",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "me",
+                "description": "Indicates whether the current user has reacted using the emoji",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "emoji",
+                "description": "The emoji used to react to the message",
+                "type": "Emoji",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "Reaction",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "Command",
+            "description": "Represents a command in the Discord environment.",
+            "actions": [
+              {
+                "name": "delete",
+                "description": "Deletes the command from the Discord environment.",
+                "type": "Void",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "fields": [
+              {
+                "name": "name",
+                "description": "The unique name of the command.",
+                "type": "String",
+                "params": [],
+                "hints": {
+                  "primary": true
+                }
+              },
+              {
+                "name": "description",
+                "description": "A brief explanation of what the command does.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "default_member_permissions",
+                "description": "Permissions required for a server member to use the command.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "default_permission",
+                "description": "Indicates whether the command is enabled by default for everyone.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "type",
+                "description": "The type of command, represented as an integer.",
+                "type": "Int",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "nsfw",
+                "description": "Flag indicating whether the command is Not Safe For Work.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "options",
+                "description": "A list of options for the command.",
+                "type": "List",
+                "ofType": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "Command",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "Emoji",
+            "description": "Represents a custom Discord emoji.",
+            "actions": [],
+            "fields": [
+              {
+                "name": "id",
+                "description": "Unique identifier for the emoji.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "user",
+                "description": "User who uploaded the emoji.",
+                "type": "User",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "name",
+                "description": "Official name of the emoji.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "animated",
+                "description": "Flag indicating if the emoji has animation.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "available",
+                "description": "Availability status of the emoji for use.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "require_colons",
+                "description": "Whether colons are required for the emoji's use.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "managed",
+                "description": "Indicates if an integration or bot manages the emoji.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "roles",
+                "description": "List of roles with access to the emoji.",
+                "type": "List",
+                "ofType": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "Emoji",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "SlashCommand",
+            "description": "Represents a Discord interaction where a user invokes a command via a special text trigger.",
+            "actions": [],
+            "fields": [
+              {
+                "name": "user",
+                "description": "The Discord user who executed the slash command.",
+                "type": "User",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "application_id",
+                "description": "ID of the Discord application to which the slash command is associated.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "token",
+                "description": "Authentication token for verifying and responding to the slash command interaction.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "options",
+                "description": "Parameters provided by the user when invoking the slash command.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "SlashCommand",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "CommandOption",
+            "description": "Represents an option provided in a Discord command.",
+            "actions": [],
+            "fields": [
+              {
+                "name": "name",
+                "description": "The name of the command option.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "type",
+                "description": "The type of the command option.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "value",
+                "description": "The value of the command option.",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "CommandOption",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "Tests",
+            "description": "Type used for executing test actions related to Discord functionality.",
+            "actions": [
+              {
+                "name": "testGetGuilds",
+                "description": "Action to test the retrieval of guilds from Discord.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "ping",
+                "description": "Action to test the Discord bot's responsiveness.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "testGetUsers",
+                "description": "Action to test the retrieval of users from Discord.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "testGetChannels",
+                "description": "Action to test the retrieval of channels from Discord.",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "fields": [
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "Tests",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          }
+        ],
+        "imports": [
+          {
+            "name": "sys-process",
+            "schema": {
+              "types": [
+                {
+                  "name": "Root",
+                  "description": "",
+                  "actions": [],
+                  "fields": [
+                    {
+                      "name": "endpointUrl",
+                      "description": "Gets the program's own endpoint URL",
+                      "type": "String",
+                      "params": [],
+                      "hints": {}
+                    }
+                  ],
+                  "events": []
+                }
+              ],
+              "imports": []
+            },
+            "source": {
+              "Program": "tbd"
+            }
+          },
+          {
+            "name": "http",
+            "schema": {
+              "types": [
+                {
+                  "name": "Root",
+                  "description": "Make HTTP requests",
+                  "actions": [
+                    {
+                      "name": "post",
+                      "description": "Performs a POST request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "The URL to send the POST request to",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "Optional headers for the POST request",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "body",
+                          "description": "The body of the POST request",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "put",
+                      "description": "Performs a PUT request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "The URL to send the PUT request to",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "Optional headers for the PUT request",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "body",
+                          "description": "The body of the PUT request",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "patch",
+                      "description": "Performs a PATCH request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "The URL to send the PATCH request to",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "Optional headers for the PATCH request",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "body",
+                          "description": "The body of the PATCH request",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "delete",
+                      "description": "Performs a DELETE request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "The URL to send the DELETE request to",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "Optional headers for the DELETE request",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "body",
+                          "description": "The body of the DELETE request",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "endpoint",
+                      "description": "Invoked when an HTTP request is received for this program",
+                      "type": "String",
+                      "params": [
+                        {
+                          "name": "method",
+                          "description": "HTTP method",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "path",
+                          "description": "HTTP path",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "body",
+                          "description": "HTTP body, if any",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "query",
+                          "description": "HTTP query string, encoded as JSON",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "headers",
+                          "description": "HTTP headers, encoded as JSON",
+                          "type": "String",
+                          "optional": false
+                        }
+                      ],
+                      "hints": {
+                        "hidden": true
+                      }
+                    },
+                    {
+                      "name": "email",
+                      "description": "Invoked when a new email arrives for this program",
+                      "type": "String",
+                      "params": [
+                        {
+                          "name": "replyTo",
+                          "description": "Reply to",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "text",
+                          "description": "Email body as text",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "from",
+                          "description": "Email sender",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "to",
+                          "description": "To",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "cc",
+                          "description": "CC",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "subject",
+                          "description": "Email subject",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "html",
+                          "description": "Email body as HTML",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "id",
+                          "description": "Email ID",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "inReplyTo",
+                          "description": "ID of email this is a reply to, if any",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "replyText",
+                          "description": "Reply text",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "attachments",
+                          "description": "An array of attachment names and download URLs",
+                          "type": "Json",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {
+                        "hidden": true
+                      }
+                    }
+                  ],
+                  "fields": [
+                    {
+                      "name": "get",
+                      "description": "A resource obtained via a GET request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "The URL of the resource to retrieve",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "Optional headers for the GET request",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "authenticated",
+                      "description": "An HTTP client that can make authenticated requests using Membrane's Transparent Authentication. Used by drivers to use avoid requiring an API key/secret pair.",
+                      "type": "Authenticated",
+                      "params": [
+                        {
+                          "name": "api",
+                          "description": "The API to use. Check https://www.membrane.io/docs for a list of APIs that support this",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "authId",
+                          "description": "An arbitrary gref that uniquely identifies this program.",
+                          "type": "Ref",
+                          "ofType": "String",
+                          "optional": false
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "gref",
+                      "description": "A reference to this node",
+                      "type": "Ref",
+                      "ofType": "Root",
+                      "params": [],
+                      "hints": {}
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "name": "Resource",
+                  "description": "An HTTP response",
+                  "actions": [],
+                  "fields": [
+                    {
+                      "name": "status",
+                      "description": "HTTP status code",
+                      "type": "Int",
+                      "params": [],
+                      "hints": {}
+                    },
+                    {
+                      "name": "headers",
+                      "description": "HTTP headers returned by server",
+                      "type": "String",
+                      "params": [],
+                      "hints": {}
+                    },
+                    {
+                      "name": "body",
+                      "description": "Body of the request as a string",
+                      "type": "String",
+                      "params": [],
+                      "hints": {}
+                    },
+                    {
+                      "name": "gref",
+                      "description": "A reference to this node",
+                      "type": "Ref",
+                      "ofType": "Resource",
+                      "params": [],
+                      "hints": {}
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "name": "Authenticated",
+                  "description": "",
+                  "actions": [
+                    {
+                      "name": "createLink",
+                      "description": "Creates a link to authenticate the user with an API and enable Membrane's Transparent Auth. Valid values for `api`: `google-docs`",
+                      "type": "String",
+                      "params": [],
+                      "hints": {}
+                    },
+                    {
+                      "name": "post",
+                      "description": "Performs a POST request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "body",
+                          "description": "",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "put",
+                      "description": "Performs a PUT request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "body",
+                          "description": "",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "patch",
+                      "description": "Performs a PATCH request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "body",
+                          "description": "",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "delete",
+                      "description": "Performs a DELETE request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "body",
+                          "description": "",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    }
+                  ],
+                  "fields": [
+                    {
+                      "name": "get",
+                      "description": "A resource obtained via a GET request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "hasAuthenticated",
+                      "description": "Whether the user has authenticated with this API",
+                      "type": "Boolean",
+                      "params": [],
+                      "hints": {}
+                    },
+                    {
+                      "name": "gref",
+                      "description": "A reference to this node",
+                      "type": "Ref",
+                      "ofType": "Authenticated",
+                      "params": [],
+                      "hints": {}
+                    }
+                  ],
+                  "events": []
+                }
+              ],
+              "imports": [
+                {
+                  "name": "sys-http",
+                  "schema": {
+                    "types": [
+                      {
+                        "name": "Root",
+                        "description": "",
+                        "actions": [
+                          {
+                            "name": "post",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "body",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "put",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "body",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "patch",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "body",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "delete",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "body",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          }
+                        ],
+                        "fields": [
+                          {
+                            "name": "get",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "authenticated",
+                            "description": "An HTTP client that can make authenticated requests using Membrane's Transparent Authentication. Used by drivers to use avoid requiring an API key/secret pair.",
+                            "type": "Authenticated",
+                            "params": [
+                              {
+                                "name": "api",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "authId",
+                                "description": "",
+                                "type": "Ref",
+                                "ofType": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          }
+                        ],
+                        "events": []
+                      },
+                      {
+                        "name": "Resource",
+                        "description": "",
+                        "actions": [],
+                        "fields": [
+                          {
+                            "name": "status",
+                            "description": "",
+                            "type": "Int",
+                            "params": [],
+                            "hints": {}
+                          },
+                          {
+                            "name": "headers",
+                            "description": "",
+                            "type": "String",
+                            "params": [],
+                            "hints": {}
+                          },
+                          {
+                            "name": "body",
+                            "description": "",
+                            "type": "String",
+                            "params": [],
+                            "hints": {}
+                          }
+                        ],
+                        "events": []
+                      },
+                      {
+                        "name": "Authenticated",
+                        "description": "",
+                        "actions": [
+                          {
+                            "name": "createLink",
+                            "description": "Creates a link to authenticate the user with this API",
+                            "type": "String",
+                            "params": [],
+                            "hints": {}
+                          },
+                          {
+                            "name": "post",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "body",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "put",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "body",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "patch",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "body",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "delete",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "body",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          }
+                        ],
+                        "fields": [
+                          {
+                            "name": "get",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "hasAuthenticated",
+                            "description": "Whether the user has authenticated with this API",
+                            "type": "Boolean",
+                            "params": [],
+                            "hints": {}
+                          }
+                        ],
+                        "events": []
+                      }
+                    ],
+                    "imports": []
+                  },
+                  "source": {
+                    "Program": "tbd"
+                  }
+                },
+                {
+                  "name": "sys-clock",
+                  "schema": {
+                    "types": [
+                      {
+                        "name": "Root",
+                        "description": "",
+                        "actions": [
+                          {
+                            "name": "sleep",
+                            "description": "",
+                            "type": "Void",
+                            "params": [
+                              {
+                                "name": "key",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "seconds",
+                                "description": "",
+                                "type": "Float",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          }
+                        ],
+                        "fields": [],
+                        "events": [
+                          {
+                            "name": "timer",
+                            "description": "",
+                            "type": "TimerEvent",
+                            "params": [
+                              {
+                                "name": "key",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "spec",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "maxCount",
+                                "description": "",
+                                "type": "Int",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "timerAt",
+                            "description": "",
+                            "type": "TimerEvent",
+                            "params": [
+                              {
+                                "name": "key",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "seconds",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          }
+                        ]
+                      },
+                      {
+                        "name": "TimerEvent",
+                        "description": "",
+                        "actions": [],
+                        "fields": [
+                          {
+                            "name": "id",
+                            "description": "",
+                            "type": "String",
+                            "params": [],
+                            "hints": {}
+                          }
+                        ],
+                        "events": []
+                      }
+                    ],
+                    "imports": []
+                  },
+                  "source": {
+                    "Program": ""
+                  }
+                },
+                {
+                  "name": "sys-process",
+                  "schema": {
+                    "types": [
+                      {
+                        "name": "Root",
+                        "description": "",
+                        "actions": [],
+                        "fields": [
+                          {
+                            "name": "endpointUrl",
+                            "description": "Gets the program's own endpoint URL",
+                            "type": "String",
+                            "params": [],
+                            "hints": {}
+                          }
+                        ],
+                        "events": []
+                      }
+                    ],
+                    "imports": []
+                  },
+                  "source": {
+                    "Program": ""
+                  }
+                }
+              ]
+            },
+            "source": {
+              "Program": "tbd"
+            }
+          },
+          {
+            "name": "sys-clock",
+            "schema": {
+              "types": [
+                {
+                  "name": "Root",
+                  "description": "",
+                  "actions": [
+                    {
+                      "name": "sleep",
+                      "description": "",
+                      "type": "Void",
+                      "params": [
+                        {
+                          "name": "key",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "seconds",
+                          "description": "",
+                          "type": "Float",
+                          "optional": false
+                        }
+                      ],
+                      "hints": {}
+                    }
+                  ],
+                  "fields": [],
+                  "events": [
+                    {
+                      "name": "timer",
+                      "description": "",
+                      "type": "TimerEvent",
+                      "params": [
+                        {
+                          "name": "key",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "spec",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "maxCount",
+                          "description": "",
+                          "type": "Int",
+                          "optional": false
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "timerAt",
+                      "description": "",
+                      "type": "TimerEvent",
+                      "params": [
+                        {
+                          "name": "key",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "seconds",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        }
+                      ],
+                      "hints": {}
+                    }
+                  ]
+                },
+                {
+                  "name": "TimerEvent",
+                  "description": "",
+                  "actions": [],
+                  "fields": [
+                    {
+                      "name": "id",
+                      "description": "",
+                      "type": "String",
+                      "params": [],
+                      "hints": {}
+                    }
+                  ],
+                  "events": []
+                }
+              ],
+              "imports": []
+            },
+            "source": {
+              "Program": ""
+            }
+          },
+          {
+            "name": "sys-process",
+            "schema": {
+              "types": [
+                {
+                  "name": "Root",
+                  "description": "",
+                  "actions": [],
+                  "fields": [
+                    {
+                      "name": "endpointUrl",
+                      "description": "Gets the program's own endpoint URL",
+                      "type": "String",
+                      "params": [],
+                      "hints": {}
+                    }
+                  ],
+                  "events": []
+                }
+              ],
+              "imports": []
+            },
+            "source": {
+              "Program": ""
+            }
+          }
+        ]
+      },
+      "source": {
+        "Program": "tbd"
+      }
+    }
+  ]
 }
