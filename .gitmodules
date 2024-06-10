@@ -13,3 +13,6 @@
 [submodule "height"]
 	path = height
 	url = https://github.com/membrane-io/membrane-driver-height.git
+[submodule "discord"]
+	path = discord
+	url = https://github.com/membrane-io/membrane-driver-discord.git

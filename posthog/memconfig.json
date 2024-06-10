@@ -1,0 +1,12 @@
+{
+  "schema": {
+    "types": [
+      {
+        "name": "Root",
+        "actions": [],
+        "fields": [{ "name": "status", "type": "String" }],
+        "events": [{ "name": "statusChanged", "type": "Void" }]
+      }
+    ]
+  }
+}
