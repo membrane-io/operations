@@ -5,6 +5,10 @@ export const email: resolvers.Root["email"] = async ({
   subject,
   text,
 }) => {
+  if (!from.endsWith("@membrane.io")) {
+    console.log("Ignoring email from", from);
+    return;
+  }
   const issues = subject.match(/T-\d+/g) || [];
   if (issues.length === 0) return;
 
