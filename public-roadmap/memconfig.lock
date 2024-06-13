@@ -1,0 +1,2265 @@
+{
+  "types": {
+    "tasks": {
+      "gref_hash": "9870b77b69a4007c87c6a662cd77b1580a517e42f9f035e49abe8eed79e8f0c7",
+      "type": "height:TaskPage"
+    }
+  },
+  "imports": [
+    {
+      "name": "height",
+      "schema": {
+        "types": [
+          {
+            "name": "Root",
+            "description": "A driver for the Height.app API",
+            "actions": [
+              {
+                "name": "configure",
+                "description": "Configures the Height driver with a API token",
+                "type": "Void",
+                "params": [
+                  {
+                    "name": "token",
+                    "description": "A string representing the API token",
+                    "type": "String",
+                    "optional": false
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "endpoint",
+                "description": "Invoked when an HTTP request is received for this program",
+                "type": "String",
+                "params": [
+                  {
+                    "name": "method",
+                    "description": "HTTP method",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "path",
+                    "description": "HTTP path",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "body",
+                    "description": "HTTP body, if any",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "query",
+                    "description": "HTTP query string, encoded as JSON",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "headers",
+                    "description": "HTTP headers, encoded as JSON",
+                    "type": "String",
+                    "optional": false
+                  }
+                ],
+                "hints": {
+                  "hidden": true
+                }
+              },
+              {
+                "name": "email",
+                "description": "Invoked when a new email arrives for this program",
+                "type": "String",
+                "params": [
+                  {
+                    "name": "replyTo",
+                    "description": "Reply to",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "text",
+                    "description": "Email body as text",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "from",
+                    "description": "Email sender",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "to",
+                    "description": "To",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "cc",
+                    "description": "CC",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "subject",
+                    "description": "Email subject",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "html",
+                    "description": "Email body as HTML",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "id",
+                    "description": "Email ID",
+                    "type": "String",
+                    "optional": false
+                  },
+                  {
+                    "name": "inReplyTo",
+                    "description": "ID of email this is a reply to, if any",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "replyText",
+                    "description": "Reply text",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "attachments",
+                    "description": "An array of attachment names and download URLs",
+                    "type": "Json",
+                    "optional": true
+                  }
+                ],
+                "hints": {
+                  "hidden": true
+                }
+              }
+            ],
+            "fields": [
+              {
+                "name": "status",
+                "description": "Status of the Height Driver",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "workspace",
+                "description": "Information about the workspace",
+                "type": "Workspace",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "lists",
+                "description": "Collection of task lists",
+                "type": "TaskListCollection",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "users",
+                "description": "Collection of users",
+                "type": "UserCollection",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "tasks",
+                "description": "Collection of tasks",
+                "type": "TaskCollection",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "me",
+                "description": "Current user's information",
+                "type": "User",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "activities",
+                "description": "Collection of activities",
+                "type": "ActivityCollection",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "Root",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "Workspace",
+            "description": "Represents a workspace",
+            "actions": [],
+            "fields": [
+              {
+                "name": "id",
+                "description": "Identifier for the workspace",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "model",
+                "description": "Model information",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "name",
+                "description": "Name of the workspace",
+                "type": "String",
+                "params": [],
+                "hints": {
+                  "primary": true
+                }
+              },
+              {
+                "name": "url",
+                "description": "URL of the workspace",
+                "type": "String",
+                "params": [],
+                "hints": {
+                  "format": "url"
+                }
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "Workspace",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "TaskList",
+            "description": "Represents a task list",
+            "actions": [
+              {
+                "name": "patch",
+                "description": "Update a task list. Any parameters not provided will be left unchanged.",
+                "type": "Void",
+                "params": [
+                  {
+                    "name": "description",
+                    "description": "Description of the list",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "name",
+                    "description": "Name of the list",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "visualization",
+                    "description": "Visualization settings",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "archivedAt",
+                    "description": "ISO 8601 date string",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "icon",
+                    "description": "Icon associated with the list",
+                    "type": "String",
+                    "optional": true
+                  },
+                  {
+                    "name": "iconHue",
+                    "description": "Hue of the icon",
+                    "type": "Int",
+                    "optional": true
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "duplicate",
+                "description": "Duplicate a list",
+                "type": "Void",
+                "params": [
+                  {
+                    "name": "name",
+                    "description": "Name of the duplicated list",
+                    "type": "String",
+                    "optional": true
+                  }
+                ],
+                "hints": {}
+              }
+            ],
+            "fields": [
+              {
+                "name": "id",
+                "description": "Identifier for the list",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "model",
+                "description": "The model is always `list`",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "type",
+                "description": "Type of the list",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "key",
+                "description": "The unique key of your list is used as their url",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "description",
+                "description": "Description of the list",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "url",
+                "description": "URL of the list",
+                "type": "String",
+                "params": [],
+                "hints": {
+                  "format": "url"
+                }
+              },
+              {
+                "name": "appearance",
+                "description": "Appearance settings",
+                "type": "Appearance",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "visualization",
+                "description": "Visualization settings",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "TaskList",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "TaskListPage",
+            "description": "Represents a page of task lists",
+            "actions": [],
+            "fields": [
+              {
+                "name": "items",
+                "description": "List of task lists",
+                "type": "List",
+                "ofType": "TaskList",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "next",
+                "description": "Reference to the next page of task lists",
+                "type": "Ref",
+                "ofType": "TaskListPage",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "TaskListPage",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "TaskListCollection",
+            "description": "Collection of task lists",
+            "actions": [],
+            "fields": [
+              {
+                "name": "one",
+                "description": "Retrieves a single task list",
+                "type": "TaskList",
+                "params": [
+                  {
+                    "name": "id",
+                    "description": "Identifier for the task list",
+                    "type": "String",
+                    "optional": false
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "page",
+                "description": "Retrieves a page of task lists",
+                "type": "TaskListPage",
+                "params": [
+                  {
+                    "name": "page",
+                    "description": "Page number",
+                    "type": "Int",
+                    "optional": true
+                  },
+                  {
+                    "name": "pageSize",
+                    "description": "Size of the page",
+                    "type": "Int",
+                    "optional": true
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "TaskListCollection",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "Appearance",
+            "description": "Represents appearance settings",
+            "actions": [],
+            "fields": [
+              {
+                "name": "icon",
+                "description": "Icon information",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "hue",
+                "description": "Hue value",
+                "type": "Int",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "iconUrl",
+                "description": "URL of the icon",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "Appearance",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "Task",
+            "description": "Represents a task",
+            "actions": [
+              {
+                "name": "comment",
+                "description": "Post a message related to the task",
+                "type": "Ref",
+                "ofType": "Activity",
+                "params": [
+                  {
+                    "name": "message",
+                    "description": "Message to be posted",
+                    "type": "String",
+                    "optional": false
+                  }
+                ],
+                "hints": {}
+              }
+            ],
+            "fields": [
+              {
+                "name": "id",
+                "description": "Identifier for the task",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "model",
+                "description": "Model information",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "index",
+                "description": "Index of the task",
+                "type": "Int",
+                "params": [],
+                "hints": {
+                  "primary": true
+                }
+              },
+              {
+                "name": "lists",
+                "description": "Lists associated with the task",
+                "type": "List",
+                "ofType": "TaskList",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "name",
+                "description": "Name of the task",
+                "type": "String",
+                "params": [],
+                "hints": {
+                  "primary": true
+                }
+              },
+              {
+                "name": "description",
+                "description": "Description of the task",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "status",
+                "description": "Status of the task",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "assignees",
+                "description": "Users assigned to the task",
+                "type": "List",
+                "ofType": "User",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "parentTask",
+                "description": "Parent task of the task",
+                "type": "Task",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "fields",
+                "description": "Fields associated with the task",
+                "type": "List",
+                "ofType": "TaskField",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "deleted",
+                "description": "Indicates if the task is deleted",
+                "type": "Boolean",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "deletedAt",
+                "description": "The date at which the task was deleted",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "Task",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "TaskField",
+            "description": "Represents a task field",
+            "actions": [],
+            "fields": [
+              {
+                "name": "fieldTemplateId",
+                "description": "Identifier for the field template",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "value",
+                "description": "Value of the field",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "date",
+                "description": "Date associated with the field",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "labels",
+                "description": "Labels associated with the field",
+                "type": "List",
+                "ofType": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "linkedTasks",
+                "description": "Tasks linked to the field",
+                "type": "List",
+                "ofType": "TaskLink",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "TaskField",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "TaskLink",
+            "description": "Represents a link between tasks",
+            "actions": [],
+            "fields": [
+              {
+                "name": "id",
+                "description": "Identifier for the link",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "index",
+                "description": "Index of the link",
+                "type": "Int",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "TaskLink",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "OrderIntent",
+            "description": "Represents an intent for ordering tasks",
+            "actions": [],
+            "fields": [
+              {
+                "name": "intent",
+                "description": "Valid values are `start`, `end`, `before`, `after`",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "taskId",
+                "description": "Identifier of the task (used for certain intents)",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "OrderIntent",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "User",
+            "description": "Represents a user",
+            "actions": [],
+            "fields": [
+              {
+                "name": "id",
+                "description": "Identifier for the user",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "model",
+                "description": "Model information",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "state",
+                "description": "State information",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "email",
+                "description": "Email address of the user",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "username",
+                "description": "Username of the user",
+                "type": "String",
+                "params": [],
+                "hints": {
+                  "primary": true
+                }
+              },
+              {
+                "name": "firstname",
+                "description": "First name of the user",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "lastname",
+                "description": "Last name of the user",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "access",
+                "description": "Access level of the user",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "createdAt",
+                "description": "Timestamp of user creation",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "pictureUrl",
+                "description": "URL of the user's picture",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "User",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "UserPage",
+            "description": "Represents a page of users",
+            "actions": [],
+            "fields": [
+              {
+                "name": "items",
+                "description": "List of users",
+                "type": "List",
+                "ofType": "User",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "next",
+                "description": "Reference to the next page of users",
+                "type": "Ref",
+                "ofType": "UserPage",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "UserPage",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "UserCollection",
+            "description": "Collection of users",
+            "actions": [],
+            "fields": [
+              {
+                "name": "one",
+                "description": "Retrieves a single user",
+                "type": "User",
+                "params": [
+                  {
+                    "name": "id",
+                    "description": "Identifier for the user",
+                    "type": "String",
+                    "optional": false
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "page",
+                "description": "Retrieves a page of users",
+                "type": "UserPage",
+                "params": [
+                  {
+                    "name": "page",
+                    "description": "Page number",
+                    "type": "Int",
+                    "optional": true
+                  },
+                  {
+                    "name": "pageSize",
+                    "description": "Size of the page",
+                    "type": "Int",
+                    "optional": true
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "UserCollection",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "TaskPage",
+            "description": "Represents a page of tasks",
+            "actions": [],
+            "fields": [
+              {
+                "name": "items",
+                "description": "List of tasks",
+                "type": "List",
+                "ofType": "Task",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "next",
+                "description": "Reference to the next page of tasks",
+                "type": "Ref",
+                "ofType": "TaskPage",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "TaskPage",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "TaskCollection",
+            "description": "Collection of tasks",
+            "actions": [],
+            "fields": [
+              {
+                "name": "one",
+                "description": "Retrieves a single task",
+                "type": "Task",
+                "params": [
+                  {
+                    "name": "id",
+                    "description": "Identifier for the task",
+                    "type": "String",
+                    "optional": false
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "page",
+                "description": "Retrieves a page of tasks",
+                "type": "TaskPage",
+                "params": [
+                  {
+                    "name": "page",
+                    "description": "Page number",
+                    "type": "Int",
+                    "optional": true
+                  },
+                  {
+                    "name": "pageSize",
+                    "description": "Size of the page",
+                    "type": "Int",
+                    "optional": true
+                  },
+                  {
+                    "name": "listId",
+                    "description": "",
+                    "type": "String",
+                    "optional": true
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "TaskCollection",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "Activity",
+            "description": "Represents an activity",
+            "actions": [],
+            "fields": [
+              {
+                "name": "id",
+                "description": "Identifier for the activity",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "model",
+                "description": "Model information",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "createdAt",
+                "description": "Date of creation of the activity",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "task",
+                "description": "Related task",
+                "type": "Task",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "createdUser",
+                "description": "The user id that posted that activity",
+                "type": "User",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "type",
+                "description": "Type of the activity",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "message",
+                "description": "The message/body of this comment/description",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "oldValue",
+                "description": "Old value of the activity",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "newValue",
+                "description": "New value of the activity",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "readUsers",
+                "description": "Users who have read the activity",
+                "type": "List",
+                "ofType": "User",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "url",
+                "description": "URL associated with the activity",
+                "type": "String",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "Activity",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "ActivityPage",
+            "description": "Represents a page of activities",
+            "actions": [],
+            "fields": [
+              {
+                "name": "items",
+                "description": "List of activities",
+                "type": "List",
+                "ofType": "Activity",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "next",
+                "description": "Reference to the next page of activities",
+                "type": "Ref",
+                "ofType": "ActivityPage",
+                "params": [],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "ActivityPage",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          },
+          {
+            "name": "ActivityCollection",
+            "description": "Collection of activities",
+            "actions": [],
+            "fields": [
+              {
+                "name": "one",
+                "description": "Retrieves a single activity",
+                "type": "Activity",
+                "params": [
+                  {
+                    "name": "id",
+                    "description": "Identifier for the activity",
+                    "type": "String",
+                    "optional": false
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "page",
+                "description": "Retrieves a page of activities",
+                "type": "ActivityPage",
+                "params": [
+                  {
+                    "name": "page",
+                    "description": "Page number",
+                    "type": "Int",
+                    "optional": true
+                  },
+                  {
+                    "name": "pageSize",
+                    "description": "Size of the page",
+                    "type": "Int",
+                    "optional": true
+                  }
+                ],
+                "hints": {}
+              },
+              {
+                "name": "gref",
+                "description": "A reference to this node",
+                "type": "Ref",
+                "ofType": "ActivityCollection",
+                "params": [],
+                "hints": {}
+              }
+            ],
+            "events": []
+          }
+        ],
+        "imports": [
+          {
+            "name": "http",
+            "schema": {
+              "types": [
+                {
+                  "name": "Root",
+                  "description": "Make HTTP requests",
+                  "actions": [
+                    {
+                      "name": "post",
+                      "description": "Performs a POST request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "The URL to send the POST request to",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "Optional headers for the POST request",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "body",
+                          "description": "The body of the POST request",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "put",
+                      "description": "Performs a PUT request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "The URL to send the PUT request to",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "Optional headers for the PUT request",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "body",
+                          "description": "The body of the PUT request",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "patch",
+                      "description": "Performs a PATCH request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "The URL to send the PATCH request to",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "Optional headers for the PATCH request",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "body",
+                          "description": "The body of the PATCH request",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "delete",
+                      "description": "Performs a DELETE request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "The URL to send the DELETE request to",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "Optional headers for the DELETE request",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "body",
+                          "description": "The body of the DELETE request",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "endpoint",
+                      "description": "Invoked when an HTTP request is received for this program",
+                      "type": "String",
+                      "params": [
+                        {
+                          "name": "method",
+                          "description": "HTTP method",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "path",
+                          "description": "HTTP path",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "body",
+                          "description": "HTTP body, if any",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "query",
+                          "description": "HTTP query string, encoded as JSON",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "headers",
+                          "description": "HTTP headers, encoded as JSON",
+                          "type": "String",
+                          "optional": false
+                        }
+                      ],
+                      "hints": {
+                        "hidden": true
+                      }
+                    },
+                    {
+                      "name": "email",
+                      "description": "Invoked when a new email arrives for this program",
+                      "type": "String",
+                      "params": [
+                        {
+                          "name": "replyTo",
+                          "description": "Reply to",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "text",
+                          "description": "Email body as text",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "from",
+                          "description": "Email sender",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "to",
+                          "description": "To",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "cc",
+                          "description": "CC",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "subject",
+                          "description": "Email subject",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "html",
+                          "description": "Email body as HTML",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "id",
+                          "description": "Email ID",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "inReplyTo",
+                          "description": "ID of email this is a reply to, if any",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "replyText",
+                          "description": "Reply text",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "attachments",
+                          "description": "An array of attachment names and download URLs",
+                          "type": "Json",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {
+                        "hidden": true
+                      }
+                    }
+                  ],
+                  "fields": [
+                    {
+                      "name": "get",
+                      "description": "A resource obtained via a GET request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "The URL of the resource to retrieve",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "Optional headers for the GET request",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "authenticated",
+                      "description": "An HTTP client that can make authenticated requests using Membrane's Transparent Authentication. Used by drivers to use avoid requiring an API key/secret pair.",
+                      "type": "Authenticated",
+                      "params": [
+                        {
+                          "name": "api",
+                          "description": "The API to use. Check https://www.membrane.io/docs for a list of APIs that support this",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "authId",
+                          "description": "An arbitrary gref that uniquely identifies this program.",
+                          "type": "Ref",
+                          "ofType": "String",
+                          "optional": false
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "gref",
+                      "description": "A reference to this node",
+                      "type": "Ref",
+                      "ofType": "Root",
+                      "params": [],
+                      "hints": {}
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "name": "Resource",
+                  "description": "An HTTP response",
+                  "actions": [],
+                  "fields": [
+                    {
+                      "name": "status",
+                      "description": "HTTP status code",
+                      "type": "Int",
+                      "params": [],
+                      "hints": {}
+                    },
+                    {
+                      "name": "headers",
+                      "description": "HTTP headers returned by server",
+                      "type": "String",
+                      "params": [],
+                      "hints": {}
+                    },
+                    {
+                      "name": "body",
+                      "description": "Body of the request as a string",
+                      "type": "String",
+                      "params": [],
+                      "hints": {}
+                    },
+                    {
+                      "name": "gref",
+                      "description": "A reference to this node",
+                      "type": "Ref",
+                      "ofType": "Resource",
+                      "params": [],
+                      "hints": {}
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "name": "Authenticated",
+                  "description": "",
+                  "actions": [
+                    {
+                      "name": "createLink",
+                      "description": "Creates a link to authenticate the user with an API and enable Membrane's Transparent Auth. Valid values for `api`: `google-docs`",
+                      "type": "String",
+                      "params": [],
+                      "hints": {}
+                    },
+                    {
+                      "name": "post",
+                      "description": "Performs a POST request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "body",
+                          "description": "",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "put",
+                      "description": "Performs a PUT request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "body",
+                          "description": "",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "patch",
+                      "description": "Performs a PATCH request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "body",
+                          "description": "",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "delete",
+                      "description": "Performs a DELETE request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "",
+                          "type": "String",
+                          "optional": true
+                        },
+                        {
+                          "name": "body",
+                          "description": "",
+                          "type": "String",
+                          "optional": true
+                        }
+                      ],
+                      "hints": {}
+                    }
+                  ],
+                  "fields": [
+                    {
+                      "name": "get",
+                      "description": "A resource obtained via a GET request",
+                      "type": "Resource",
+                      "params": [
+                        {
+                          "name": "url",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "headers",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "hasAuthenticated",
+                      "description": "Whether the user has authenticated with this API",
+                      "type": "Boolean",
+                      "params": [],
+                      "hints": {}
+                    },
+                    {
+                      "name": "gref",
+                      "description": "A reference to this node",
+                      "type": "Ref",
+                      "ofType": "Authenticated",
+                      "params": [],
+                      "hints": {}
+                    }
+                  ],
+                  "events": []
+                }
+              ],
+              "imports": [
+                {
+                  "name": "sys-http",
+                  "schema": {
+                    "types": [
+                      {
+                        "name": "Root",
+                        "description": "",
+                        "actions": [
+                          {
+                            "name": "post",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "body",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "put",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "body",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "patch",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "body",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "delete",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "body",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          }
+                        ],
+                        "fields": [
+                          {
+                            "name": "get",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "authenticated",
+                            "description": "An HTTP client that can make authenticated requests using Membrane's Transparent Authentication. Used by drivers to use avoid requiring an API key/secret pair.",
+                            "type": "Authenticated",
+                            "params": [
+                              {
+                                "name": "api",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "authId",
+                                "description": "",
+                                "type": "Ref",
+                                "ofType": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          }
+                        ],
+                        "events": []
+                      },
+                      {
+                        "name": "Resource",
+                        "description": "",
+                        "actions": [],
+                        "fields": [
+                          {
+                            "name": "status",
+                            "description": "",
+                            "type": "Int",
+                            "params": [],
+                            "hints": {}
+                          },
+                          {
+                            "name": "headers",
+                            "description": "",
+                            "type": "String",
+                            "params": [],
+                            "hints": {}
+                          },
+                          {
+                            "name": "body",
+                            "description": "",
+                            "type": "String",
+                            "params": [],
+                            "hints": {}
+                          }
+                        ],
+                        "events": []
+                      },
+                      {
+                        "name": "Authenticated",
+                        "description": "",
+                        "actions": [
+                          {
+                            "name": "createLink",
+                            "description": "Creates a link to authenticate the user with this API",
+                            "type": "String",
+                            "params": [],
+                            "hints": {}
+                          },
+                          {
+                            "name": "post",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "body",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "put",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "body",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "patch",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "body",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "delete",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "body",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          }
+                        ],
+                        "fields": [
+                          {
+                            "name": "get",
+                            "description": "",
+                            "type": "Resource",
+                            "params": [
+                              {
+                                "name": "url",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "headers",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "hasAuthenticated",
+                            "description": "Whether the user has authenticated with this API",
+                            "type": "Boolean",
+                            "params": [],
+                            "hints": {}
+                          }
+                        ],
+                        "events": []
+                      }
+                    ],
+                    "imports": []
+                  },
+                  "source": {
+                    "Program": "tbd"
+                  }
+                },
+                {
+                  "name": "sys-clock",
+                  "schema": {
+                    "types": [
+                      {
+                        "name": "Root",
+                        "description": "",
+                        "actions": [
+                          {
+                            "name": "sleep",
+                            "description": "",
+                            "type": "Void",
+                            "params": [
+                              {
+                                "name": "key",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "seconds",
+                                "description": "",
+                                "type": "Float",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          }
+                        ],
+                        "fields": [],
+                        "events": [
+                          {
+                            "name": "timer",
+                            "description": "",
+                            "type": "TimerEvent",
+                            "params": [
+                              {
+                                "name": "key",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "spec",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "maxCount",
+                                "description": "",
+                                "type": "Int",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          },
+                          {
+                            "name": "timerAt",
+                            "description": "",
+                            "type": "TimerEvent",
+                            "params": [
+                              {
+                                "name": "key",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              },
+                              {
+                                "name": "seconds",
+                                "description": "",
+                                "type": "String",
+                                "optional": false
+                              }
+                            ],
+                            "hints": {}
+                          }
+                        ]
+                      },
+                      {
+                        "name": "TimerEvent",
+                        "description": "",
+                        "actions": [],
+                        "fields": [
+                          {
+                            "name": "id",
+                            "description": "",
+                            "type": "String",
+                            "params": [],
+                            "hints": {}
+                          }
+                        ],
+                        "events": []
+                      }
+                    ],
+                    "imports": []
+                  },
+                  "source": {
+                    "Program": ""
+                  }
+                },
+                {
+                  "name": "sys-process",
+                  "schema": {
+                    "types": [
+                      {
+                        "name": "Root",
+                        "description": "",
+                        "actions": [],
+                        "fields": [
+                          {
+                            "name": "endpointUrl",
+                            "description": "Gets the program's own endpoint URL",
+                            "type": "String",
+                            "params": [],
+                            "hints": {}
+                          }
+                        ],
+                        "events": []
+                      }
+                    ],
+                    "imports": []
+                  },
+                  "source": {
+                    "Program": ""
+                  }
+                }
+              ]
+            },
+            "source": {
+              "Program": "tbd"
+            }
+          },
+          {
+            "name": "sys-clock",
+            "schema": {
+              "types": [
+                {
+                  "name": "Root",
+                  "description": "",
+                  "actions": [
+                    {
+                      "name": "sleep",
+                      "description": "",
+                      "type": "Void",
+                      "params": [
+                        {
+                          "name": "key",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "seconds",
+                          "description": "",
+                          "type": "Float",
+                          "optional": false
+                        }
+                      ],
+                      "hints": {}
+                    }
+                  ],
+                  "fields": [],
+                  "events": [
+                    {
+                      "name": "timer",
+                      "description": "",
+                      "type": "TimerEvent",
+                      "params": [
+                        {
+                          "name": "key",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "spec",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "maxCount",
+                          "description": "",
+                          "type": "Int",
+                          "optional": false
+                        }
+                      ],
+                      "hints": {}
+                    },
+                    {
+                      "name": "timerAt",
+                      "description": "",
+                      "type": "TimerEvent",
+                      "params": [
+                        {
+                          "name": "key",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        },
+                        {
+                          "name": "seconds",
+                          "description": "",
+                          "type": "String",
+                          "optional": false
+                        }
+                      ],
+                      "hints": {}
+                    }
+                  ]
+                },
+                {
+                  "name": "TimerEvent",
+                  "description": "",
+                  "actions": [],
+                  "fields": [
+                    {
+                      "name": "id",
+                      "description": "",
+                      "type": "String",
+                      "params": [],
+                      "hints": {}
+                    }
+                  ],
+                  "events": []
+                }
+              ],
+              "imports": []
+            },
+            "source": {
+              "Program": ""
+            }
+          },
+          {
+            "name": "sys-process",
+            "schema": {
+              "types": [
+                {
+                  "name": "Root",
+                  "description": "",
+                  "actions": [],
+                  "fields": [
+                    {
+                      "name": "endpointUrl",
+                      "description": "Gets the program's own endpoint URL",
+                      "type": "String",
+                      "params": [],
+                      "hints": {}
+                    }
+                  ],
+                  "events": []
+                }
+              ],
+              "imports": []
+            },
+            "source": {
+              "Program": ""
+            }
+          }
+        ]
+      },
+      "source": {
+        "Program": "tbd"
+      }
+    }
+  ]
+}
