@@ -31,6 +31,10 @@
     {
       "name": "discord",
       "path": "discord"
+    },
+    {
+      "name": "public-roadmap",
+      "path": "public-roadmap"
     }
   ],
   "launch": {
