@@ -22,10 +22,11 @@ function formatStatus(heightStatus?: string) {
 }
 
 function formatDescription(heightDesc?: string) {
-  const mdImage = /!\[.*?\]\(.*?\)/g;
-  const descWithoutImages = heightDesc?.replace(mdImage, "");
+  const regex = /===public\s+([\s\S]*?)\s*===/g;
+  const match = regex.exec(heightDesc || "");
+  const publicDescription = match ? match[1].trim() : "";
 
-  return descWithoutImages ?? "";
+  return publicDescription;
 }
 
 export const endpoint: resolvers.Root["endpoint"] = async (req) => {
