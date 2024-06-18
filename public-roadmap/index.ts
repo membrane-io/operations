@@ -32,6 +32,22 @@ function formatDescription(heightDesc?: string) {
   return publicDescription;
 }
 
+async function fetchTasks(ipAddress: string) {
+  const fields = "{ id name description status }";
+  const tasks = await nodes.tasks.items.$query(fields);
+
+  const publicRoadmapTasks = tasks
+    .filter((task) => task.status !== "done")
+    .map((task) => {
+      const { id, name, description: heightDesc, status: heightStatus } = task;
+      const status = formatStatus(heightStatus);
+      const description = formatDescription(heightDesc);
+      return { id, name, description, status };
+    });
+
+  return publicRoadmapTasks;
+}
+
 function fetchUpvotes({
   ipAddress,
   taskId,
@@ -51,41 +67,27 @@ function fetchUpvotes({
   return { numUpvotes, hasUpvoted };
 }
 
-async function fetchTasks(ipAddress: string) {
-  const fields = "{ id name description status }";
-  const tasks = await nodes.tasks.items.$query(fields);
-
-  const publicRoadmapTasks = tasks
-    .filter((task) => task.status !== "done")
-    .map((task) => {
-      const { id, name, description: heightDesc, status: heightStatus } = task;
-      const status = formatStatus(heightStatus);
-      const description = formatDescription(heightDesc);
-      const { numUpvotes, hasUpvoted } = fetchUpvotes({
-        ipAddress,
-        taskId: id,
-      });
-
-      return { id, name, description, status, numUpvotes, hasUpvoted };
-    });
-
-  return publicRoadmapTasks;
-}
-
 export const endpoint: resolvers.Root["endpoint"] = async (req) => {
-  switch (`${req.method} ${req.path}`) {
-    case "GET /":
-      const ip = JSON.parse(req.headers)["x-forwarded-for"];
+  const ipAddress = JSON.parse(req.headers)["x-forwarded-for"];
+
+  switch (req.method) {
+    case "GET":
+      if (req.path.includes("upvotes")) {
+        const taskId = req.path.split("/").pop();
+        return JSON.stringify({
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(fetchUpvotes({ ipAddress, taskId })),
+        });
+      }
 
       return JSON.stringify({
         status: 200,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(await fetchTasks(ip)),
+        body: JSON.stringify(await fetchTasks(ipAddress)),
       });
-    case "POST /upvote":
-    case "POST /downvote":
+    case "POST":
       const { id } = JSON.parse(req.body as string);
-      const ipAddress = JSON.parse(req.headers)["x-forwarded-for"];
 
       req.path.includes("upvote")
         ? (state.tasks[id][ipAddress] = true)
