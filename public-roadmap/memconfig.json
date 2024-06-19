@@ -8,6 +8,8 @@
     ]
   },
   "dependencies": {
-    "tasks": "height:tasks.page(listId:\"06120277-c46d-4837-a307-a4a7c2d77cee\",pageSize:100)"
+    "publicRoadmapTasks": "height:tasks.page(listId:\"06120277-c46d-4837-a307-a4a7c2d77cee\",pageSize:100)",
+    "tasks": "height:tasks",
+    "email": "email:"
   }
 }
