@@ -64,7 +64,7 @@ export const endpoint: resolvers.Root["endpoint"] = async (req) => {
       // POST /feedback/:id
       if (req.path.includes("feedback")) {
         const params = new URLSearchParams(req.body);
-        const email = params.get("email") ?? "anonymous";
+        const email = params.get("email") || "anonymous";
         const feedback = params.get("feedback");
         const { name } = await nodes.tasks
           .one({ id: taskId })
