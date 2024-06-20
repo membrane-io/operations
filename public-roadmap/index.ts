@@ -1,56 +1,83 @@
-import { nodes } from "membrane";
+import { state, nodes } from "membrane";
+import { fetchTasks, fetchUpvotes } from "./tasks";
+import { getFeedbackForm, getFeedbackSuccessPage } from "./feedbackForm";
 
-// custom statuses return their id from the Height API
-const HEIGHT_BLOCKED_STATUS = "b7217600-255f-4ed6-b8ca-e8d2b7f6edc1";
-
-function formatStatus(heightStatus?: string) {
-  let status = "";
-
-  switch (heightStatus) {
-    case "backLog":
-    case HEIGHT_BLOCKED_STATUS:
-      status = "todo";
-      break;
-    case "inProgress":
-      status = "in-progress";
-      break;
-    default:
-      status = heightStatus ?? "unknown";
-  }
-
-  return status;
-}
-
-function formatDescription(heightDesc?: string) {
-  const regex = /===public\s+([\s\S]*?)\s*===/g;
-  const match = regex.exec(heightDesc || "");
-  const publicDescription = match ? match[1].trim() : "";
-
-  return publicDescription;
+type TaskId = string;
+type IpAddress = string;
+export interface State {
+  tasks: Record<TaskId, Record<IpAddress, boolean>>;
 }
 
 export const endpoint: resolvers.Root["endpoint"] = async (req) => {
-  const fields = "{ id name description status }";
-  const tasks = await nodes.tasks.items.$query(fields);
+  const ipAddress = JSON.parse(req.headers)["x-forwarded-for"];
 
-  const publicRoadmapTasks = tasks
-    .filter((task) => task.status !== "done")
-    .map((task) => {
-      const { id, name, description: heightDesc, status: heightStatus } = task;
-      const status = formatStatus(heightStatus);
-      const description = formatDescription(heightDesc);
+  switch (req.method) {
+    case "GET": {
+      const status = 200;
+      const headers = { "Content-Type": "application/json" };
 
-      return { id, name, description, status };
-    });
+      // GET /
+      if (req.path === "/") {
+        const body = JSON.stringify(await fetchTasks());
+        return JSON.stringify({ status, headers, body });
+      }
 
-  switch (`${req.method} ${req.path}`) {
-    case "GET /":
-      const body = JSON.stringify(publicRoadmapTasks);
-      return JSON.stringify({
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-        body,
-      });
+      // GET /upvotes/:id
+      if (req.path.includes("upvotes")) {
+        const taskId = req.path.split("/").pop();
+        const body = JSON.stringify(fetchUpvotes({ ipAddress, taskId }));
+        return JSON.stringify({ status, headers, body });
+      }
+
+      // GET /feedback/:id
+      if (req.path.includes("feedback")) {
+        const taskId = req.path.split("/").pop();
+        if (!taskId) return JSON.stringify({ status: 404 });
+
+        const { name } = await nodes.tasks
+          .one({ id: taskId })
+          .$query(`{ id name }`);
+        if (!name) return JSON.stringify({ status: 404 });
+
+        const headers = { "Content-Type": "text/html" };
+        const body = await getFeedbackForm({ taskId, taskName: name });
+        return JSON.stringify({ status, headers, body });
+      }
+    }
+    case "POST": {
+      const status = 201;
+      const taskId = req.path.split("/").pop();
+      if (!taskId) return JSON.stringify({ status: 404 });
+
+      // POST /upvote/:id
+      if (req.path.includes("upvote")) {
+        state.tasks[taskId][ipAddress] = true;
+        return JSON.stringify({ status });
+      }
+
+      // POST /downvote/:id
+      if (req.path.includes("downvote")) {
+        delete state.tasks[taskId][ipAddress];
+        return JSON.stringify({ status });
+      }
+
+      // POST /feedback/:id
+      if (req.path.includes("feedback")) {
+        const params = new URLSearchParams(req.body);
+        const email = params.get("email") || "anonymous";
+        const feedback = params.get("feedback");
+        const { name } = await nodes.tasks
+          .one({ id: taskId })
+          .$query(`{ id name }`);
+
+        const subject = `Feedback from ${email} on public roadmap task: ${name}`;
+        await nodes.email.send({ subject, body: `${feedback}` });
+
+        const headers = { "Content-Type": "text/html" };
+        const body = await getFeedbackSuccessPage();
+        return JSON.stringify({ status, headers, body });
+      }
+    }
     default:
       return JSON.stringify({ status: 404 });
   }
